@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  
 YOU ARE NOT ALLOWED TO MODIFY ANY FUNCTION DEFINIDTION's PROVIDED.
 WRITE YOUR CODE IN THE RESPECTIVE QUESTION FUNCTION BLOCK
@@ -9,6 +9,13 @@ WRITE YOUR CODE IN THE RESPECTIVE QUESTION FUNCTION BLOCK
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Security.Principal;
+using System.Reflection.Metadata;
+using System.Xml.Linq;
+using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Collections;
 
 namespace ISM6225_Spring_2024_Assignment_2
 {
@@ -18,50 +25,45 @@ namespace ISM6225_Spring_2024_Assignment_2
         {
             //Question 1:
             Console.WriteLine("Question 1:");
-            int[] nums1 = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+            int[] nums1 = { 1,1,2 };
             int numberOfUniqueNumbers = RemoveDuplicates(nums1);
             Console.WriteLine(numberOfUniqueNumbers);
 
             //Question 2:
             Console.WriteLine("Question 2:");
-            int[] nums2 = { 0, 1, 0, 3, 12 };
-
+            int[] nums2 = { 0 };
             IList<int> resultAfterMovingZero = MoveZeroes(nums2);
             string combinationsString = ConvertIListToArray(resultAfterMovingZero);
             Console.WriteLine(combinationsString);
 
             //Question 3:
             Console.WriteLine("Question 3:");
-            int[] nums3 = { -1, 0, 1, 2, -1, -4 };
-            // int[] nums3 = { 0, 1, 1 };
-            //int[] nums3 = { 0, 0, 0 };
+            int[] nums3 = { 0,1,1};
             IList<IList<int>> triplets = ThreeSum(nums3);
             string tripletResult = ConvertIListToNestedList(triplets);
             Console.WriteLine(tripletResult);
 
             //Question 4:
             Console.WriteLine("Question 4:");
-            // int[] nums4 = { 1, 1, 0, 1, 1, 1 };
             int[] nums4 = { 1, 0, 1, 1, 0, 1 };
             int maxOnes = FindMaxConsecutiveOnes(nums4);
             Console.WriteLine(maxOnes);
 
             //Question 5:
             Console.WriteLine("Question 5:");
-            int binaryInput = 1101111;
+            int binaryInput = 101011;
             int decimalResult = BinaryToDecimal(binaryInput);
             Console.WriteLine(decimalResult);
 
             //Question 6:
             Console.WriteLine("Question 6:");
-            int[] nums5 = { 3, 6, 9, 1 };
+            int[] nums5 = { 10};
             int maxGap = MaximumGap(nums5);
             Console.WriteLine(maxGap);
 
             //Question 7:
             Console.WriteLine("Question 7:");
-            int[] nums6 = { 2, 1, 2 };
-            int[] nums7 = { 1, 2, 1, 10 };
+            int[] nums6 = { 1, 2, 1, 10 };
             int largestPerimeterResult = LargestPerimeter(nums6);
             Console.WriteLine(largestPerimeterResult);
 
@@ -104,6 +106,8 @@ namespace ISM6225_Spring_2024_Assignment_2
 
         public static int RemoveDuplicates(int[] nums)
         {
+            //This code efficiently identifies and counts unique elements in the input array nums, utilizing two lists to distinguish between unique elements and duplicates.
+            //By combining the two lists into a single list, it effectively maintains the integrity of the unique elements while marking duplicates for reference.
             try
             {
                 // Initialize a list to store the unique elements from the nums array
@@ -167,6 +171,8 @@ namespace ISM6225_Spring_2024_Assignment_2
 
         public static IList<int> MoveZeroes(int[] nums)
         {
+            //This code efficiently separates zero elements from non-zero elements in the input array nums, preserving their relative order.
+          //  By counting zero occurrences and appending them to the output list, it effectively maintains the integrity of the input array.
             try
             {
                 // Check if the array contains only one element, if so, return the array itself
@@ -248,7 +254,10 @@ namespace ISM6225_Spring_2024_Assignment_2
 
         public static IList<IList<int>> ThreeSum(int[] nums)
         {
-            try
+
+            //  This code efficiently finds unique triplets that sum up to zero by utilizing sorting and the two-pointer technique, demonstrating an effective algorithmic approach.
+           // By handling duplicates and skipping unnecessary iterations, the code optimizes its performance, showcasing attention to algorithmic efficiency
+           try
             {
                 Array.Sort(nums); // Sort the array
 
@@ -329,6 +338,8 @@ namespace ISM6225_Spring_2024_Assignment_2
 
         public static int FindMaxConsecutiveOnes(int[] nums)
         {
+            // Self Reflection : This code efficiently counts the maximum consecutive sequence of ones in an input array nums.
+           // It iterates through the array, resetting the count whenever it encounters a non-one element and updating the final count if a new maximum consecutive sequence is found.
             try
             {
                 // Initialize variables to keep track of the current count and the final count
@@ -399,6 +410,8 @@ namespace ISM6225_Spring_2024_Assignment_2
 
         public static int BinaryToDecimal(int binary)
         {
+            //Self Reflection : This code converts a binary integer into its decimal equivalent by iterating through its binary string representation.
+            //It effectively handles each bit of the binary string, calculating the corresponding decimal value and accumulating it.
             // Convert the integer 'binary' to a binary string
             string binaryStr = binary.ToString();
 
@@ -469,6 +482,7 @@ namespace ISM6225_Spring_2024_Assignment_2
 
         public static int MaximumGap(int[] nums)
         {
+            //Self Reflection : It efficiently calculates the maximum difference by iterating through the sorted array and updating the maximum difference if a larger difference is found.
             try
             {
                 // Sort the array in non-decreasing order
@@ -536,6 +550,8 @@ namespace ISM6225_Spring_2024_Assignment_2
 
         public static int LargestPerimeter(int[] nums)
         {
+            //Self Reflection : The code efficiently handles edge cases by checking if the input array is null or has less than 3 elements and returning 0 accordingly.
+            //It sorts the array to easily identify the longest sides for triangle formation and applies the triangle inequality theorem to determine if a valid triangle can be formed.
             try
             {
                 if (nums == null || nums.Length < 3)
@@ -618,6 +634,8 @@ namespace ISM6225_Spring_2024_Assignment_2
 
         public static string RemoveOccurrences(string s, string part)
         {
+            //Self Reflection : This code efficiently removes all occurrences of a given substring 'part' from the input string 's' using a while loop and string manipulation methods.
+            //The use of exception handling with a catch block for all exceptions might be overly broad; specifying more targeted exceptions would be better for debugging.
             try
             {
                 // Loop until all occurrences of 'part' are removed from the string 's'
